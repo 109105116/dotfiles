@@ -113,22 +113,23 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
--- vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 -- custom configuration for "+ and "* registers to work in WSL
 -- remember to add C:\Windows\System32\WindowsPowerShell\v1.0\ in system variables
-vim.g.clipboard = {
-  name = 'WslClipboard',
-  copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
-  },
-  paste = {
-    ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-  },
-  cache_enabled = 0,
-}
+
+-- vim.g.clipboard = {
+--   name = 'WslClipboard',
+--   copy = {
+--     ['+'] = 'clip.exe',
+--     ['*'] = 'clip.exe',
+--   },
+--   paste = {
+--     ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--     ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--   },
+--   cache_enabled = 0,
+-- }
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -243,6 +244,7 @@ require('lazy').setup({
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- 'christoomey/vim-tmux-navigator',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
