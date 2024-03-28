@@ -1,0 +1,23 @@
+CompileFlags:
+  Add:
+  - -I/usr/local/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/x86_64-apple-darwin23/13/../../../../../../include/c++/13
+  - -I/usr/local/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/x86_64-apple-darwin23/13/../../../../../../include/c++/13/x86_64-apple-darwin23
+  - -I/usr/local/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/x86_64-apple-darwin23/13/../../../../../../include/c++/13/backward
+  - -I/usr/local/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/x86_64-apple-darwin23/13/include
+  - -I/usr/local/Cellar/gcc/13.2.0/bin/../lib/gcc/current/gcc/x86_64-apple-darwin23/13/include-fixed
+  - -I/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include
+  - -I/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/System/Library/Frameworks
+  - -DLOCAL
+  - -Wall
+  - -O2
+  - -Wextra
+  - -Wshadow
+  - -Wconversioan
+  - -Wfloat-equal
+  - -Wno-unused-const-variable
+  - -Wno-sign-conversion
+  - -std=c++17
+  - -ferror-limit=0
+
+Index:
+  Background: Skip
