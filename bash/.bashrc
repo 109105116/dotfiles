@@ -88,9 +88,56 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+# alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+alias ll='eza -lah'
+
+alias dp='python3 ~/programming/download_prob.py'
+alias mp='~/programming/make_prob.sh'
+
+run_files() {
+  make run TARGET="${1%.*}"
+}
+run_tests() {
+  make test TARGET="${1%.*}"
+}
+run_interactive() {
+  make interactive TARGET="${1%.*}"
+}
+alias rf='run_files'
+alias rt='run_tests'
+alias rtp='rt main.cpp; echo; cat sample1.in; echo; cat sample1.res'
+alias ri='run_interactive'
+alias rip='run_interactive main.cpp'
+
+alias asc='asciinema'
+
+alias java='java.exe'
+alias javac='javac.exe'
+
+# Set up nvim config switching (https://michaeluloth.com/neovim-switch-configs/)
+
+alias v='nvim' # default Neovim config
+alias vz='NVIM_APPNAME=nvim-lazyvim nvim' # LazyVim
+alias vc='NVIM_APPNAME=nvim-nvchad nvim' # NvChad
+alias vj='NVIM_APPNAME=nvim-java nvim'
+alias vk='NVIM_APPNAME=nvim-kickstart nvim' # Kickstart
+# alias va='NVIM_APPNAME=nvim-astrovim nvim' # AstroVim
+# alias vl='NVIM_APPNAME=nvim-lunarvim nvim' # LunarVim
+
+nvims() {
+  # Assumes all configs exist in directories named ~/.config/nvim-*
+  local config=$(fd --max-depth 1 --glob 'nvim*' ~/.config | fzf --prompt="Neovim Configs > " --height=~50% --layout=reverse --border --exit-0)
+ 
+  # If I exit fzf without selecting a config, don't open Neovim
+  [[ -z $config ]] && echo "No config selected" && return
+ 
+  # Open Neovim with the selected config
+  NVIM_APPNAME=$(basename $config) nvim $@
+}
+alias vv='nvims'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -115,3 +162,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# starship setup
+eval "$(starship init bash)"
+
+# source /usr/share/doc/fzf/examples/key-bindings.bash
+# source /usr/share/doc/fzf/examples/completion.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
